@@ -24,7 +24,7 @@ type Film struct {
 
 // handler function #1 - returns the index.html template, with film data
 func Handler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("../list.html"))
+	tmpl := template.Must(template.ParseFiles("list.html"))
 	films := map[string][]Film{
 		"Films": {
 			{Title: "The Godfather", Director: "Francis Ford Coppola"},
@@ -42,7 +42,7 @@ func handlerPost(w http.ResponseWriter, r *http.Request) {
 	director := r.PostFormValue("director")
 	// htmlStr := fmt.Sprintf("<li class='list-group-item bg-primary text-white'>%s - %s</li>", title, director)
 	// tmpl, _ := template.New("t").Parse(htmlStr)
-	tmpl := template.Must(template.ParseFiles("../list.html"))
+	tmpl := template.Must(template.ParseFiles("list.html"))
 	tmpl.ExecuteTemplate(w, "film-list-element", Film{Title: title, Director: director})
 }
 
