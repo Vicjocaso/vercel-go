@@ -53,6 +53,6 @@ func main() {
 	http.HandleFunc("/", Handler)
 	http.HandleFunc("/add-film/", handlerPost)
 
-	log.Fatal(http.ListenAndServe(":8000", nil))
+	log.Fatal(http.ListenAndServe(":3000", nil))
 
 }
