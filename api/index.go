@@ -1,11 +1,8 @@
-package main
+package handler
 
 import (
 	"fmt"
-	"log"
 	"net/http"
-	"text/template"
-	"time"
 )
 
 type Film struct {
@@ -13,46 +10,11 @@ type Film struct {
 	Director string
 }
 
-// func Handler(w http.ResponseWriter, r *http.Request) {
-// 	fmt.Fprintf(w, "<h1>Hello from Go RunTime Serverless!</h1>")
-// }
-
-// func main() {
-// 	http.HandleFunc("/", Handler)
-// 	http.ListenAndServe(":3000", nil)
-// }
-
-// handler function #1 - returns the index.html template, with film data
 func Handler(w http.ResponseWriter, r *http.Request) {
-	tmpl := template.Must(template.ParseFiles("list.html"))
-	films := map[string][]Film{
-		"Films": {
-			{Title: "The Godfather", Director: "Francis Ford Coppola"},
-			{Title: "Blade Runner", Director: "Ridley Scott"},
-			{Title: "The Thing", Director: "John Carpenter"},
-		},
-	}
-	tmpl.Execute(w, films)
-}
-
-// handler function #2 - returns the template block with the newly added film, as an HTMX response
-func handlerPost(w http.ResponseWriter, r *http.Request) {
-	time.Sleep(1 * time.Second)
-	title := r.PostFormValue("title")
-	director := r.PostFormValue("director")
-	// htmlStr := fmt.Sprintf("<li class='list-group-item bg-primary text-white'>%s - %s</li>", title, director)
-	// tmpl, _ := template.New("t").Parse(htmlStr)
-	tmpl := template.Must(template.ParseFiles("list.html"))
-	tmpl.ExecuteTemplate(w, "film-list-element", Film{Title: title, Director: director})
+	fmt.Fprintf(w, "<h1>Hello from Go RunTime Serverless!</h1>")
 }
 
 func main() {
-	fmt.Println("Go app...")
-
-	// define handlers
 	http.HandleFunc("/", Handler)
-	http.HandleFunc("/add-film/", handlerPost)
-
-	log.Fatal(http.ListenAndServe(":3000", nil))
-
+	http.ListenAndServe(":3000", nil)
 }
