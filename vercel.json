@@ -4,10 +4,6 @@
     {
       "src": "api/main.go",
       "use": "@vercel/go"
-    },
-    {
-      "src": "api/main.go",
-      "use": "@vercel/go"
     }
   ]
 }
