@@ -28,21 +28,11 @@
 package handler
 
 import (
-	"fmt"
 	"io"
 	"net/http"
 
 	"github.com/labstack/echo"
 )
-
-func Handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "<h1>Hello from Go RunTime Serverless!</h1>")
-}
-
-func GetData(w http.ResponseWriter, r *http.Request) {
-
-	fmt.Fprintf(w, "<h1>DATA!</h1>")
-}
 
 func main() {
 
