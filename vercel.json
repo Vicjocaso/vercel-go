@@ -1,7 +1,13 @@
 {
-  "build": {
-    "env": {
-      "GO_BUILD_FLAGS": "-ldflags '-s -w'"
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/endpoint1.go",
+      "use": "@vercel/go"
+    },
+    {
+      "src": "api/endpoint2.go",
+      "use": "@vercel/go"
     }
-  }
+  ]
 }
