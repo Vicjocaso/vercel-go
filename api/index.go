@@ -30,8 +30,9 @@ package handler
 import (
 	"fmt"
 	"io"
-	"log"
 	"net/http"
+
+	"github.com/labstack/echo"
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
@@ -45,15 +46,26 @@ func GetData(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 
-	// Start an HTTP API server.
-	const addr = ":3000"
-	log.Printf("successfully connected to PlanetScale, starting HTTP server on %q", addr)
-	http.HandleFunc("/", Handler)
-	http.HandleFunc("/data", GetData)
-	http.HandleFunc("/health", HealthCheckHandler)
-	if err := http.ListenAndServe(addr, nil); err != nil {
-		log.Fatalf("failed to serve HTTP: %v", err)
-	}
+	e := echo.New()
+
+	e.GET("/endpoint1", func(c echo.Context) error {
+		return c.String(http.StatusOK, "<h1>Hello from Go RunTime Serverless!</h1>")
+	})
+
+	e.GET("/endpoint2", func(c echo.Context) error {
+		return c.String(http.StatusOK, "<h1>Hello from Go RunTime Serverless 2!</h1>")
+	})
+
+	e.Logger.Fatal(e.Start(":3000"))
+
+	// const addr = ":3000"
+	// log.Printf("successfully connected to PlanetScale, starting HTTP server on %q", addr)
+	// http.HandleFunc("/", Handler)
+	// http.HandleFunc("/data", GetData)
+	// http.HandleFunc("/health", HealthCheckHandler)
+	// if err := http.ListenAndServe(addr, nil); err != nil {
+	// 	log.Fatalf("failed to serve HTTP: %v", err)
+	// }
 
 }
 
