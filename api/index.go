@@ -28,7 +28,6 @@
 package handler
 
 import (
-	"io"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -48,23 +47,4 @@ func main() {
 
 	e.Logger.Fatal(e.Start(":3000"))
 
-	// const addr = ":3000"
-	// log.Printf("successfully connected to PlanetScale, starting HTTP server on %q", addr)
-	// http.HandleFunc("/", Handler)
-	// http.HandleFunc("/data", GetData)
-	// http.HandleFunc("/health", HealthCheckHandler)
-	// if err := http.ListenAndServe(addr, nil); err != nil {
-	// 	log.Fatalf("failed to serve HTTP: %v", err)
-	// }
-
-}
-
-func HealthCheckHandler(w http.ResponseWriter, r *http.Request) {
-	// A very simple health check.
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusOK)
-
-	// In the future we could report back on the status of our DB, or our cache
-	// (e.g. Redis) by performing a simple PING, and include them in the response.
-	io.WriteString(w, `{"alive": true}`)
 }
