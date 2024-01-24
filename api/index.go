@@ -49,7 +49,8 @@ func main() {
 	const addr = ":3000"
 	log.Printf("successfully connected to PlanetScale, starting HTTP server on %q", addr)
 	http.HandleFunc("/", Handler)
-	http.HandleFunc("/get-data", GetData)
+	http.HandleFunc("/data", GetData)
+	http.HandleFunc("/health", HealthCheckHandler)
 	if err := http.ListenAndServe(addr, nil); err != nil {
 		log.Fatalf("failed to serve HTTP: %v", err)
 	}
