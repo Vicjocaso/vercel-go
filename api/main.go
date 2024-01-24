@@ -17,8 +17,8 @@ func handleEndpoint2(c echo.Context) error {
 func main() {
 	e := echo.New()
 
-	e.GET("/handleEndpoint1", handleEndpoint1)
-	e.GET("/handleEndpoint2", handleEndpoint2)
+	e.GET("/endpoint1", handleEndpoint1)
+	e.GET("/endpoint2", handleEndpoint2)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }

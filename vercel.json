@@ -2,7 +2,11 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/main.go",
+      "src": "api/endpoint1.go",
+      "use": "@vercel/go"
+    },
+    {
+      "src": "api/endpoint2.go",
       "use": "@vercel/go"
     }
   ]
